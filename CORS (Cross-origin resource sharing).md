@@ -19,3 +19,27 @@ Normally, the bank's website wouldn't allow this request because it's coming fro
 So, when the user visits the malicious website and the code is executed, it sends the request to the bank's website and transfers the money out of the user's account, all without the user's knowledge or consent.
 
 This is just one example of how an attacker could use a cross-origin request to steal data or perform other malicious actions. That's why it's important to properly implement CORS to prevent these kinds of attacks.
+
+## Technical Overview
+
+When a web page makes a cross-origin request, the web browser will first send a "preflight" request to the server to check if the server allows the actual request. The preflight request uses the HTTP OPTIONS method, and includes a special "Access-Control-Request-Method" header that specifies the actual method of the request (e.g., GET, POST, PUT, DELETE).
+
+The server can then respond with a set of CORS headers that indicate whether the actual request is allowed or not. Here are some of the most important CORS headers:
+
+Access-Control-Allow-Origin: This header specifies which origins are allowed to make requests to the server. The value can be a single origin (e.g., "http://example.com"), or the wildcard "*" to allow any origin. For example, if a server includes the header "Access-Control-Allow-Origin: http://example.com", then only requests from that domain will be allowed to access the server's resources.
+
+Access-Control-Allow-Methods: This header specifies which HTTP methods are allowed for the actual request. For example, if a server includes the header "Access-Control-Allow-Methods: GET, POST, PUT, DELETE", then only those methods will be allowed for the actual request.
+
+Access-Control-Allow-Headers: This header specifies which headers are allowed for the actual request. This can be useful if the request includes custom headers that are not part of the standard HTTP headers.
+
+Here's an example of how a server might respond to a preflight request:
+
+```html
+HTTP/1.1 204 No Content
+Access-Control-Allow-Origin: http://example.com
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: Authorization, Content-Type
+```
+This response indicates that requests from http://example.com are allowed, and that the GET, POST, PUT, and DELETE methods are allowed for the actual request. It also allows the "Authorization" and "Content-Type" headers for the actual request.
+
+In summary, CORS is a mechanism that allows web browsers to make cross-origin requests in a secure way. By using preflight requests and a set of HTTP headers, servers can control which origins are allowed to access their resources, which HTTP methods are allowed, and which headers are allowed. This helps to prevent attacks that could steal sensitive user data or perform other malicious actions.
