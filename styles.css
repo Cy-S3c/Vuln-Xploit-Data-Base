@@ -1,0 +1,40 @@
+body {
+    font-family: 'Monospace', sans-serif;
+    background-color: black;
+    color: #00FF00;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+h1, h2, p, a {
+    font-size: 13px;
+    color: #00FF00;
+}
+
+a {
+    color: #00FF00;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
